@@ -7,6 +7,12 @@
 <struts-config>
 
     <action-mappings>
+        <action path="/login" type="action.LoginAction">
+            <forward name="taskView" path="/tasks.do"/>
+        </action>
+        <action path="/logout" type="action.LogoutAction">
+            <forward name="taskView" path="/tasks.do"/>
+        </action>
         <action path="/tasks" type="action.TaskViewAction">
             <forward name="taskView" path="/task_list.jsp"/>
         </action>
