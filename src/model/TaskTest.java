@@ -13,17 +13,15 @@ public class TaskTest
     public static void main(String args[])
     {
         User user = null;
-
-        user = new User("prateek", "password");
-        //System.out.println("Username: " + user.getUsername() + " Password: " + user.getPassword());
-        user.save();
-
-        user = null;
-
-        user = User.find("prateek");
+        
+        user = User.find("prat");
         System.out.println("Username: " + user.getUsername() + " Password: " + user.getPassword());
 
-        user.delete();
+        ArrayList<Task> tasks = user.tasks();
+        
+        for(Task t: tasks) {
+            System.out.println(t.toString());
+        }
         /*
         Task task = null;
 

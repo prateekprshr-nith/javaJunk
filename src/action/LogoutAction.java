@@ -24,6 +24,7 @@ public class LogoutAction extends Action {
         if (session.getAttribute("logged") != null) {
             session.removeAttribute("logged");
             session.removeAttribute("username");
+            session.invalidate();
         }
 
         return new ActionRedirect(mapping.findForward("taskView"));

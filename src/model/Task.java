@@ -2,6 +2,7 @@ package model;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.SplittableRandom;
 
 /**
  * Task class, acts as a model for tasks database table
@@ -11,6 +12,7 @@ import java.util.ArrayList;
  */
 public class Task {
     private int id;
+    private String username;
     private String description;
     private static Connection connection = null;
 
@@ -37,16 +39,18 @@ public class Task {
 
     public Task() {
         id = 0;
+        username = null;
         description = null;
     }
 
 
-    public Task(String description) {
+    public Task(String description, String username) {
+        this.username = username;
         this.description = description;
     }
 
 
-    private Task(int id, String description) {
+    public Task(int id, String description) {
         this.id = id;
         this.description = description;
     }
@@ -126,8 +130,8 @@ public class Task {
     public void save() {
         try {
             Statement statement = connection.createStatement();
-            String query = "INSERT INTO tasks (description) VALUE " +
-                    "('" + description + "')";
+            String query = "INSERT INTO tasks (description, username) VALUE " +
+                           "('" + description + "', '" + username + "')";
 
             int count = statement.executeUpdate(query);
 

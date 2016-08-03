@@ -1,7 +1,9 @@
 package action;
 
 import model.Task;
+import model.User;
 import java.util.ArrayList;
+import javax.servlet.http.HttpSession;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import javax.servlet.http.HttpServletRequest;
@@ -20,10 +22,15 @@ public class TaskViewAction extends Action {
 
     public ActionForward execute(ActionMapping mapping, ActionForm form,
                                  HttpServletRequest request, HttpServletResponse response) throws Exception {
+        HttpSession session = request.getSession();
 
-        // Get the list of all tasks and add the list in request
-        ArrayList<Task> tasks = Task.all();
-        request.setAttribute("tasks", tasks);
+        if (session.getAttribute("logged") != null) {
+            User user = (User) session.getAttribute("user");
+
+            // Get the list of all tasks associated with this user
+            ArrayList<Task> tasks = user.tasks();
+            request.setAttribute("tasks", tasks);
+        }
 
         return mapping.findForward("taskView");
     }

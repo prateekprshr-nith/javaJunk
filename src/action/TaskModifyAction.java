@@ -1,6 +1,7 @@
 package action;
 
 import model.Task;
+import model.User;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import javax.servlet.http.HttpServletRequest;
@@ -17,8 +18,8 @@ import org.apache.struts.action.ActionRedirect;
  */
 public class TaskModifyAction extends Action {
 
-    private void addTask(String description) {
-        Task task = new Task(description);
+    private void addTask(String description, String username) {
+        Task task = new Task(description, username);
         task.save();
     }
 
@@ -31,11 +32,13 @@ public class TaskModifyAction extends Action {
 
     public ActionRedirect execute(ActionMapping mapping, ActionForm form,
                                   HttpServletRequest request, HttpServletResponse response) throws Exception {
+        User user = (User) request.getSession().getAttribute("user");
+
         String requestType = request.getParameter("requestType");
 
         if (requestType.equals("PUT")) {
             String description = request.getParameter("description");
-            addTask(description);
+            addTask(description, user.getUsername());
         } else if (requestType.equals("DELETE")) {
             String id = request.getParameter("id");
             deleteTask(Integer.parseInt(id));

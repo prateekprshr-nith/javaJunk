@@ -149,4 +149,26 @@ public class User {
             System.out.println("Database error here: " + e);
         }
     }
+
+
+    public ArrayList<Task> tasks() {
+        ArrayList<Task> tasks = new ArrayList<Task>();
+
+        try {
+            Statement statement = connection.createStatement();
+            String query = "SELECT * FROM tasks " +
+                           "WHERE username = '" + username + "'";
+
+            ResultSet results = statement.executeQuery(query);
+            while (results.next()) {
+                tasks.add(new Task(results.getInt("id"), results.getString("description")));
+            }
+
+            statement.close();
+        } catch (SQLException e) {
+            System.out.println("Database error: " + e);
+        }
+
+        return tasks;
+    }
 }

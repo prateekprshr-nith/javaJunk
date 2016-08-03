@@ -17,7 +17,7 @@ import org.apache.struts.action.ActionRedirect;
  * @author Prateek Prasher
  * @author prateekprshr@gmail.com
  */
-public class LoginAction extends Action{
+public class LoginAction extends Action {
     public ActionRedirect execute(ActionMapping mapping, ActionForm form,
                                   HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
@@ -30,13 +30,13 @@ public class LoginAction extends Action{
 
             User user = User.find(username);
 
-            if(user == null || !password.equals(user.getPassword())) {
+            if (user == null || !password.equals(user.getPassword())) {
                 session.setAttribute("error", "The credentials are invalid!!!");
 
                 return new ActionRedirect(mapping.findForward("taskView"));
             } else {
                 session.setAttribute("logged", "");
-                session.setAttribute("username", user.getUsername());
+                session.setAttribute("user", user);
                 session.removeAttribute("error");
 
                 return new ActionRedirect(mapping.findForward("taskView"));
