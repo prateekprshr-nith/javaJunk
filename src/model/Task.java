@@ -2,6 +2,7 @@ package model;
 
 import java.sql.*;
 import java.util.ArrayList;
+import utility.DbConnectionHelper;
 
 
 /**
@@ -18,22 +19,7 @@ public class Task {
 
 
     static {
-        String user = "root";
-        String password = "thisismysqlroot";
-        String driver = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://localhost:3306/taskDb";
-
-        try {
-            Class.forName(driver).newInstance();
-        } catch (Exception e) {
-            System.out.println("Unhandled exception: " + e);
-        }
-
-        try {
-            connection = DriverManager.getConnection(url, user, password);
-        } catch (SQLException e) {
-            System.out.println("Database error: " + e);
-        }
+        connection = DbConnectionHelper.getConnection();
     }
 
 
