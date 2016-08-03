@@ -24,18 +24,21 @@
 
         out.print("<h2>\n" +
                 "    Welcome " + user.getUsername() + "\n" +
+                "    <a href='/about.jsp'>\n" +
+                "        <button type='button'>About</button>\n" +
+                "    </a>\n" +
                 "    <a href='/logout.do'>\n" +
                 "       <button type='button'>Logout</button>\n" +
                 "    </a>\n" +
                 "</h2>");
 
-        out.print("<h2>Add a new task</h2>" +
-                "<form action=\"/tasks/add.do\" method=\"post\">" +
-                "<input hidden type=\"text\" name=\"requestType\" value=\"PUT\">" +
-                "<label for=\"description\">Description</label>" +
-                "<input type=\"text\" name=\"description\" id=\"description\">" +
-                "<button type=\"submit\">Add</button>" +
-                "</form>" +
+        out.print("<h2>Add a new task</h2>\n" +
+                "<form action=\"/tasks/add.do\" method=\"post\">\n" +
+                "    <input hidden type=\"text\" name=\"requestType\" value=\"PUT\">\n" +
+                "    <label for=\"description\">Description</label>\n" +
+                "    <input type=\"text\" name=\"description\" id=\"description\" required>\n" +
+                "    <button type=\"submit\">Add</button>\n" +
+                "</form>\n" +
                 "<h2>Current tasks</h2>");
 
         ArrayList<Task> tasks = (ArrayList<Task>) request.getAttribute("tasks");
@@ -54,7 +57,11 @@
             out.print("</ul>");
         }
     } else {
-        out.print("<h2>Please login to continue:</h2>" +
+        out.print("<h2>Please login to continue" +
+                "    <a href='/about.jsp'>\n" +
+                "        <button type='button'>About</button>\n" +
+                "    </a>\n" +
+                " </h2>" +
                 "<form method=\"post\" action=\"/login.do\">" +
                 "    <label for=\"username\">Username:</label>" +
                 "    <input type=\"text\" required name=\"username\" id=\"username\">" +
