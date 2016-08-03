@@ -12,6 +12,19 @@ public class TaskTest
 {
     public static void main(String args[])
     {
+        User user = null;
+
+        user = new User("prateek", "password");
+        //System.out.println("Username: " + user.getUsername() + " Password: " + user.getPassword());
+        user.save();
+
+        user = null;
+
+        user = User.find("prateek");
+        System.out.println("Username: " + user.getUsername() + " Password: " + user.getPassword());
+
+        user.delete();
+        /*
         Task task = null;
 
 
@@ -35,7 +48,7 @@ public class TaskTest
         // Test delete
         task = tasks.get(0);
         task.delete();
-        /*
+
 
         task = Task.find(161);
         System.out.println(task);
