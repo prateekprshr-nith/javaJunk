@@ -19,7 +19,6 @@ import org.apache.struts.action.ActionMapping;
  * @author prateekprshr@gmail.com
  */
 public class TaskViewAction extends Action {
-
     public ActionForward execute(ActionMapping mapping, ActionForm form,
                                  HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();

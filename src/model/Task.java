@@ -2,7 +2,7 @@ package model;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.SplittableRandom;
+
 
 /**
  * Task class, acts as a model for tasks database table
@@ -82,6 +82,11 @@ public class Task {
     }
 
 
+    /**
+     * This method returs a list of all tasks present in database
+     *
+     * @return tasks The list of tasks
+     */
     public static ArrayList<Task> all() {
         ArrayList<Task> tasks = new ArrayList<Task>();
 
@@ -103,6 +108,12 @@ public class Task {
     }
 
 
+    /**
+     * This method finds a task with particular id
+     *
+     * @param id The id of the task
+     * @return task The reference to the task
+     */
     public static Task find(int id) {
         Task task = null;
 
@@ -126,7 +137,9 @@ public class Task {
         return task;
     }
 
-
+    /**
+     * This mehthod persists the task to database
+     */
     public void save() {
         try {
             Statement statement = connection.createStatement();
@@ -144,6 +157,9 @@ public class Task {
     }
 
 
+    /**
+     * This method deletes a task from the database
+     */
     public void delete() {
         try {
             Statement statement = connection.createStatement();

@@ -23,8 +23,10 @@ public class LoginAction extends Action {
         HttpSession session = request.getSession();
 
         if (session.getAttribute("logged") != null) {
+            // Redirect to tasks page if already logged in
             return new ActionRedirect(mapping.findForward("taskView"));
         } else {
+            // Check user credentials log him in and redirect to tasks page
             String username = (String) request.getParameter("username");
             String password = (String) request.getParameter("password");
 

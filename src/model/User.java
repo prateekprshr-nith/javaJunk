@@ -3,6 +3,7 @@ package model;
 import java.sql.*;
 import java.util.ArrayList;
 
+
 /**
  * User class, acts as a model for users database table
  *
@@ -73,6 +74,11 @@ public class User {
     }
 
 
+    /**
+     * This method returns a list of all users
+     *
+     * @return users The list of users
+     */
     public static ArrayList<User> all() {
         ArrayList<User> users = new ArrayList<User>();
 
@@ -94,13 +100,19 @@ public class User {
     }
 
 
+    /**
+     * This method finds a user with given username
+     *
+     * @param username The username of the user
+     * @return user The requrired user
+     */
     public static User find(String username) {
         User user = null;
 
         try {
             Statement statement = connection.createStatement();
             String query = "SELECT * FROM users WHERE username = '" + username + "'";
-            System.out.println(query);
+
             ResultSet resultSet = statement.executeQuery(query);
 
             if (resultSet.first()) {
@@ -118,6 +130,9 @@ public class User {
     }
 
 
+    /**
+     * This method persists a user to database
+     */
     public void save() {
         try {
             Statement statement = connection.createStatement();
@@ -135,6 +150,9 @@ public class User {
     }
 
 
+    /**
+     * This method deletes a user from database
+     */
     public void delete() {
         try {
             Statement statement = connection.createStatement();
@@ -151,6 +169,11 @@ public class User {
     }
 
 
+    /**
+     * This method returns all tasks associated with a user
+     *
+     * @return tasks The list of user's tasks
+     */
     public ArrayList<Task> tasks() {
         ArrayList<Task> tasks = new ArrayList<Task>();
 

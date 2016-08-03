@@ -11,7 +11,7 @@ import org.apache.struts.action.ActionRedirect;
 
 /**
  * Class LogoutAction, this is the action class
- * for loggin out a valid user
+ * for logging out a valid user
  *
  * @author Prateek Prasher
  * @author prateekprshr@gmail.com
@@ -27,6 +27,7 @@ public class LogoutAction extends Action {
             session.invalidate();
         }
 
+        // Redirect to login page
         return new ActionRedirect(mapping.findForward("taskView"));
     }
 }
