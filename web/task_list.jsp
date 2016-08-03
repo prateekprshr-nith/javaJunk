@@ -11,7 +11,7 @@
     <title>Task manager</title>
 </head>
 <body>
-<h1>Task Manager: Organize yourself :)</h1>
+<h1>Task Manager: Organize yourself</h1>
 
 <%
     if (session.getAttribute("error") != null) {
