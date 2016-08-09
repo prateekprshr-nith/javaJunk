@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 /**
- * Task class, acts as a model for tasks database table
+ * Task class, acts as a model for tasks database table present in database
  *
  * @author Pratee Prasher
  * @author prateekprshr@gmail.com
